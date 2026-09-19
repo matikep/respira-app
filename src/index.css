@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+/*
+  Sistema "Aurora"
+  ------------------------------------------------------------
+  Oscuro (por defecto): cielo nocturno con auroras lentas detrás de
+  superficies de vidrio. Claro: amanecer lavanda con el mismo vidrio.
+  Tonos semánticos = fases y categorías:
+  menta = inhala / calma, durazno = exhala / alivio,
+  pervinca = retención / zen, orquídea = relajación, cielo = asma.
+  Coral queda reservado SOLO para señales médicas reales.
+*/
+@theme {
+  --color-ink: #f4f2fb;
+  --color-surface: rgb(255 255 255 / 0.62);
+  --color-surface-raised: rgb(255 255 255 / 0.88);
+  --color-line: rgb(40 40 90 / 0.1);
+  --color-text: #191b33;
+  --color-text-muted: #595e80;
+
+  --color-inhale: #0c7a5f;
+  --color-inhale-dim: #c6eadf;
+  --color-exhale: #b8501f;
+  --color-exhale-dim: #f6d5c4;
+  --color-hold: #4450c4;
+  --color-dusk: #9136b0;
+  --color-sky: #146fae;
+
+  --color-alert: #bd3326;
+  --color-alert-dim: #fbdcd6;
+
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #0a0e1d;
+    --color-surface: rgb(255 255 255 / 0.05);
+    --color-surface-raised: rgb(255 255 255 / 0.1);
+    --color-line: rgb(255 255 255 / 0.1);
+    --color-text: #eef1fb;
+    --color-text-muted: #9ca5c4;
+
+    --color-inhale: #7fe0c4;
+    --color-inhale-dim: #1d4a41;
+    --color-exhale: #ffb38a;
+    --color-exhale-dim: #5a3524;
+    --color-hold: #aab4ff;
+    --color-dusk: #e3a3ff;
+    --color-sky: #7cc8ff;
+
+    --color-alert: #ff8070;
+    --color-alert-dim: #4a1f26;
+  }
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Auroras: dos capas fijas que derivan muy lento detrás de todo. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.55;
+}
+body::before {
+  background:
+    radial-gradient(40% 35% at 20% 20%, color-mix(in srgb, var(--color-inhale) 45%, transparent), transparent 70%),
+    radial-gradient(35% 30% at 85% 30%, color-mix(in srgb, var(--color-hold) 45%, transparent), transparent 70%);
+  animation: aurora-a 38s ease-in-out infinite alternate;
+}
+body::after {
+  background:
+    radial-gradient(40% 30% at 70% 85%, color-mix(in srgb, var(--color-dusk) 35%, transparent), transparent 70%),
+    radial-gradient(30% 25% at 15% 80%, color-mix(in srgb, var(--color-sky) 35%, transparent), transparent 70%);
+  animation: aurora-b 46s ease-in-out infinite alternate;
+}
+@keyframes aurora-a {
+  to { transform: translate3d(6%, 4%, 0) rotate(8deg); }
+}
+@keyframes aurora-b {
+  to { transform: translate3d(-5%, -6%, 0) rotate(-6deg); }
+}
+
+/* Todas las superficies son vidrio esmerilado. */
+.bg-surface,
+.bg-surface-raised {
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-inhale);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-inhale-dim);
+  color: var(--color-text);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
