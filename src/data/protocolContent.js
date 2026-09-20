@@ -19,8 +19,8 @@ export const triageOptions = [
     id: "A",
     prompt: "Siento pitos o silbidos audibles al botar aire, o me cuesta hablar oraciones seguidas.",
     result: "Alerta bronquial (posible crisis obstructiva / asma)",
-    action: "inhaler",
-    actionLabel: "Ver protocolo del inhalador con aerocámara",
+    action: "alerts",
+    actionLabel: "Usa tu inhalador de rescate y revisa las señales de alarma",
   },
   {
     id: "B",

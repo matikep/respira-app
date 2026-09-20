@@ -4,10 +4,10 @@ import { disclaimer } from "./data/protocolContent.js";
 import Triage from "./components/Triage.jsx";
 import ExercisePlayer from "./components/ExercisePlayer.jsx";
 import VagalResetFlow from "./components/VagalReset.jsx";
-import InhalerProtocol from "./components/InhalerProtocol.jsx";
 import ComparisonTable from "./components/ComparisonTable.jsx";
 import RedFlagBanner from "./components/RedFlagBanner.jsx";
 import Catalog from "./components/Catalog.jsx";
+import About from "./components/About.jsx";
 
 const QUICK_CALM_ID = "labios-fruncidos";
 
@@ -15,15 +15,15 @@ const QUICK_CALM_ID = "labios-fruncidos";
 const ICONS = {
   triage: "M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z",
   catalogo: "M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0M3 17c2-4 4-4 6 0s4 4 6 0 4-4 6 0M3 7c2-4 4-4 6 0s4 4 6 0 4-4 6 0",
-  inhalador: "M9 3h4v6H9zM7 9h8v9a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3zM15 14h4v4h-4",
+  acerca: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 8h.01M11 12h1v5h1",
   referencia: "M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3ZM12 8v5M12 16h.01",
 };
 
 const TABS = [
   { id: "triage", label: "Inicio" },
   { id: "catalogo", label: "Ejercicios" },
-  { id: "inhalador", label: "Inhalador" },
   { id: "referencia", label: "Alertas" },
+  { id: "acerca", label: "Acerca" },
 ];
 
 function greeting() {
@@ -67,7 +67,7 @@ export default function App() {
   }
 
   function handleTriageSelect(option) {
-    if (option.action === "inhaler") goTo("inhalador");
+    if (option.action === "alerts") goTo("referencia");
     else openExercise(option.exerciseId);
   }
 
@@ -100,7 +100,7 @@ export default function App() {
       <main>
         {tab === "triage" && <Triage onSelect={handleTriageSelect} />}
         {tab === "catalogo" && renderCatalogo()}
-        {tab === "inhalador" && <InhalerProtocol onDone={() => goTo("triage")} />}
+        {tab === "acerca" && <About />}
         {tab === "referencia" && (
           <div className="flex flex-col gap-8">
             <RedFlagBanner />

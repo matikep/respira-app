@@ -1,6 +1,6 @@
 # Sistema de Regulación Respiratoria
 
-App React (Vite + Tailwind v4) de regulación respiratoria: triage, 30 ejercicios guiados en 5 categorías (asma, alivio, calma, zen y relajación) y protocolo del inhalador con aerocámara. La base clínica está en [`docs/guia-respiratoria.md`](docs/guia-respiratoria.md).
+App React (Vite + Tailwind v4) de regulación respiratoria: triage y 30 ejercicios guiados en 5 categorías (asma, alivio, calma, zen y relajación). La base clínica está en [`docs/guia-respiratoria.md`](docs/guia-respiratoria.md).
 
 Cada ejercicio indica su nivel de evidencia, la fuente contra la que se validó y sus precauciones. **Uso educativo: no reemplaza la evaluación ni el tratamiento médico.**
 
@@ -29,11 +29,12 @@ src/
     ExercisePlayer.jsx      # reproductor genérico (usa el motor + el anillo)
     VagalReset.jsx          # descarga de tensión: Fase A (hombros) + Fase B (suspiro cíclico)
     Catalog.jsx             # recomendado según la hora, filtros y carruseles por categoría
-    InhalerProtocol.jsx     # stepper del protocolo clínico, con temporizadores propios
+    About.jsx               # acerca del proyecto, fuentes y autoría
+    InhalerProtocol.jsx     # protocolo del inhalador — fuera de la navegación por ahora, pendiente de mejorar
     Triage.jsx
     ComparisonTable.jsx
     RedFlagBanner.jsx
-  App.jsx                   # dock inferior (Inicio / Ejercicios / Calma / Inhalador / Alertas)
+  App.jsx                   # dock inferior (Inicio / Ejercicios / Calma / Alertas / Acerca)
 ```
 
 Todo el contenido clínico vive en `src/data/`, no está mezclado en el JSX — así el markdown de referencia y la app pueden mantenerse sincronizados editando un solo lugar.
