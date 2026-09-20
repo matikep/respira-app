@@ -1,12 +1,24 @@
 import { useBreathEngine } from "../hooks/useBreathEngine.js";
 import BreathRing from "./BreathRing.jsx";
-import { evidenceLevels } from "../data/exercises.js";
+import { evidenceLevels, sessionSeconds } from "../data/exercises.js";
 
 function fmt(seconds) {
   const s = Math.max(0, seconds);
   const mm = Math.floor(s / 60);
   const ss = Math.floor(s % 60);
   return `${mm}:${ss.toString().padStart(2, "0")}`;
+}
+
+const secs = (n) => `${n.toString().replace(".", ",")} s`;
+
+/** Cierre de la pauta: cuántas veces se repite el ciclo. */
+function repeatLine(exercise) {
+  if (exercise.totalSeconds) {
+    const min = Math.round(sessionSeconds(exercise) / 60);
+    return min >= 1 ? `Repite durante ${min} ${min === 1 ? "minuto" : "minutos"}.` : `Repite durante ${exercise.totalSeconds} s.`;
+  }
+  if (exercise.cycles === 1) return "Recorre la secuencia una vez.";
+  return `Repite ${exercise.cycles} ciclos.`;
 }
 
 export default function ExercisePlayer({ exercise, onDone, doneLabel = "Volver" }) {
@@ -66,8 +78,20 @@ export default function ExercisePlayer({ exercise, onDone, doneLabel = "Volver" 
         </button>
       </div>
 
+      <ol className="mt-8 w-full list-decimal space-y-2 rounded-2xl border border-line bg-surface px-4 py-4 pl-8 text-sm leading-relaxed text-text-muted marker:font-mono marker:text-xs marker:text-text-muted">
+        {exercise.phases.map((p, i) => (
+          <li key={`${p.key}-${i}`}>
+            <span className="font-semibold text-text">
+              {p.label} {secs(p.duration)}
+            </span>
+            {p.instruction && ` — ${p.instruction}`}
+          </li>
+        ))}
+        <li className="list-none -ml-4 pt-1 font-semibold text-text">{repeatLine(exercise)}</li>
+      </ol>
+
       {exercise.indication && (
-        <dl className="mt-8 w-full divide-y divide-line rounded-2xl border border-line bg-surface text-xs leading-relaxed">
+        <dl className="mt-4 w-full divide-y divide-line rounded-2xl border border-line bg-surface text-xs leading-relaxed">
           <div className="px-4 py-3">
             <dt className="font-semibold text-text">Cuándo usarlo</dt>
             <dd className="mt-0.5 text-text-muted">{exercise.indication}</dd>
