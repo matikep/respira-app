@@ -83,7 +83,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen px-5 pb-24 pt-6 sm:pt-10">
+    <div className="min-h-svh px-5 pb-24 pt-[calc(env(safe-area-inset-top)+1.5rem)] sm:pt-[calc(env(safe-area-inset-top)+2.5rem)]">
       <header className="mx-auto mb-10 flex max-w-5xl items-center justify-between">
         <div>
           <p className="text-xs font-medium text-text-muted">{greeting()}</p>

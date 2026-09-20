@@ -30,6 +30,8 @@
   --color-alert: #bd3326;
   --color-alert-dim: #fbdcd6;
 
+  --color-dock: #e9e6f4;
+
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -56,6 +58,8 @@
 
     --color-alert: #ff8070;
     --color-alert-dim: #4a1f26;
+
+    --color-dock: #12172a;
   }
 }
 
@@ -65,7 +69,8 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100svh;
+  overscroll-behavior-y: none;
   background-color: var(--color-ink);
   color: var(--color-text);
   font-family: var(--font-body);
@@ -102,14 +107,11 @@ body::after {
   to { transform: translate3d(-5%, -6%, 0) rotate(-6deg); }
 }
 
-/* El dock es opaco: con vidrio se leía el contenido por detrás. */
+/* El dock es opaco: con vidrio se leía el contenido por detrás.
+   Color sólido a propósito: color-mix() falla en iOS antiguos y ahí
+   la barra quedaba transparente. */
 .dock {
-  background: color-mix(in srgb, var(--color-ink) 88%, var(--color-text));
-}
-@media (prefers-color-scheme: dark) {
-  .dock {
-    background: color-mix(in srgb, var(--color-ink) 82%, var(--color-text) 8%);
-  }
+  background: var(--color-dock);
 }
 
 /* Todas las superficies son vidrio esmerilado. */
