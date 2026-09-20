@@ -46,6 +46,21 @@ const NOT_IN_CRISIS = "No es un tratamiento de crisis: ante una crisis usa prime
 export const exercises = [
   // ─── Asma ───────────────────────────────────────────────────────────
   {
+    id: "labios-fruncidos",
+    category: "asma",
+    title: "Respiración con labios fruncidos",
+    subtitle: "Inhala 2, exhala 4",
+    indication: "Falta de aire al esfuerzo o sensación de aire atrapado. Mantiene la vía aérea abierta más tiempo y vacía mejor el pulmón. Con la nariz tapada, inhala suave por la boca.",
+    evidence: "alta",
+    reference: "Cleveland Clinic · American Lung Association · StatPearls (NIH)",
+    totalSeconds: 120,
+    phases: [
+      inhale(2, "Inhala (nasal)", "Sin llenar del todo el pecho."),
+      exhale(4, "Exhala con labios fruncidos", "Como para silbar; lento, sin soplar fuerte."),
+      hold(1, "Pausa", "Sin tomar aire todavía."),
+    ],
+  },
+  {
     id: "control-respiratorio",
     category: "asma",
     title: "Control respiratorio",
@@ -151,21 +166,6 @@ export const exercises = [
   },
 
   // ─── Alivio ─────────────────────────────────────────────────────────
-  {
-    id: "labios-fruncidos",
-    category: "alivio",
-    title: "Respiración con labios fruncidos",
-    subtitle: "Inhala 2, exhala 4",
-    indication: "Falta de aire al esfuerzo o sensación de aire atrapado. Mantiene la vía aérea abierta más tiempo y vacía mejor el pulmón. Con la nariz tapada, inhala suave por la boca.",
-    evidence: "alta",
-    reference: "Cleveland Clinic · American Lung Association · StatPearls (NIH)",
-    totalSeconds: 120,
-    phases: [
-      inhale(2, "Inhala (nasal)", "Sin llenar del todo el pecho."),
-      exhale(4, "Exhala con labios fruncidos", "Como para silbar; lento, sin soplar fuerte."),
-      hold(1, "Pausa", "Sin tomar aire todavía."),
-    ],
-  },
   {
     id: "pausa-co2",
     category: "alivio",

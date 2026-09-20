@@ -102,6 +102,16 @@ body::after {
   to { transform: translate3d(-5%, -6%, 0) rotate(-6deg); }
 }
 
+/* El dock es opaco: con vidrio se leía el contenido por detrás. */
+.dock {
+  background: color-mix(in srgb, var(--color-ink) 88%, var(--color-text));
+}
+@media (prefers-color-scheme: dark) {
+  .dock {
+    background: color-mix(in srgb, var(--color-ink) 82%, var(--color-text) 8%);
+  }
+}
+
 /* Todas las superficies son vidrio esmerilado. */
 .bg-surface,
 .bg-surface-raised {

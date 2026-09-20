@@ -38,15 +38,14 @@ function DockButton({ tab, active, onClick }) {
     <button
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className={`flex w-16 flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-semibold transition ${
-        active ? "text-text" : "text-text-muted hover:text-text"
+      className={`flex w-16 flex-col items-center gap-0.5 rounded-xl py-1 text-[10px] font-semibold transition ${
+        active ? "text-inhale" : "text-text-muted hover:text-text"
       }`}
     >
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d={ICONS[tab.id]} />
       </svg>
       {tab.label}
-      <span className={`h-1 w-1 rounded-full transition ${active ? "bg-inhale" : "bg-transparent"}`} />
     </button>
   );
 }
@@ -84,7 +83,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen px-5 pb-36 pt-6 sm:pt-10">
+    <div className="min-h-screen px-5 pb-24 pt-6 sm:pt-10">
       <header className="mx-auto mb-10 flex max-w-5xl items-center justify-between">
         <div>
           <p className="text-xs font-medium text-text-muted">{greeting()}</p>
@@ -116,25 +115,27 @@ export default function App() {
 
       <nav
         aria-label="Secciones"
-        className="fixed inset-x-0 bottom-4 z-30 mx-auto flex w-fit items-center gap-1 rounded-[1.75rem] border border-line bg-surface-raised px-2 py-1.5 shadow-[0_20px_50px_-20px_rgb(0_0_0/0.5)]"
+        className="dock fixed inset-x-0 bottom-0 z-30 border-t border-line pb-[env(safe-area-inset-bottom)]"
       >
-        {TABS.slice(0, 2).map((t) => (
-          <DockButton key={t.id} tab={t} active={tab === t.id} onClick={() => goTo(t.id)} />
-        ))}
+        <div className="mx-auto flex max-w-md items-center justify-between gap-1 px-4 py-1">
+          {TABS.slice(0, 2).map((t) => (
+            <DockButton key={t.id} tab={t} active={tab === t.id} onClick={() => goTo(t.id)} />
+          ))}
         <button
           onClick={() => openExercise(QUICK_CALM_ID)}
           aria-label="Calma rápida: respiración con labios fruncidos"
-          className="mx-1 -mt-8 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-inhale text-[10px] font-bold leading-tight text-ink shadow-[0_10px_30px_-6px_var(--color-inhale)] transition active:scale-95 hover:scale-105"
+          className="mx-1 flex h-10 items-center gap-2 rounded-full bg-inhale px-4 text-[11px] font-bold text-ink shadow-[0_8px_24px_-8px_var(--color-inhale)] transition active:scale-95 hover:brightness-110"
         >
-          <span className="relative mb-0.5 flex h-3 w-3">
+          <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inset-0 animate-ping rounded-full bg-ink/40" />
-            <span className="relative h-3 w-3 rounded-full bg-ink/70" />
+            <span className="relative h-2.5 w-2.5 rounded-full bg-ink/70" />
           </span>
           Calma
         </button>
-        {TABS.slice(2).map((t) => (
-          <DockButton key={t.id} tab={t} active={tab === t.id} onClick={() => goTo(t.id)} />
-        ))}
+          {TABS.slice(2).map((t) => (
+            <DockButton key={t.id} tab={t} active={tab === t.id} onClick={() => goTo(t.id)} />
+          ))}
+        </div>
       </nav>
     </div>
   );

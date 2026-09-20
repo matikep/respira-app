@@ -17,7 +17,6 @@ export default function BreathRing({ size = 0.62, colorRole = "hold", label, sub
     width: px,
     height: px,
     transform: `scale(${size})`,
-    transition: idle ? undefined : "transform 80ms linear",
   };
 
   return (
@@ -28,7 +27,7 @@ export default function BreathRing({ size = 0.62, colorRole = "hold", label, sub
       {/* halo difuso que sigue al orbe */}
       <div
         className="absolute rounded-full blur-2xl"
-        style={{ ...live, background: color, opacity: 0.35, transition: `${live.transition ?? ""}, background 600ms` }}
+        style={{ ...live, background: color, opacity: 0.35, transition: "background 600ms" }}
       />
       {/* orbe vivo */}
       <div
@@ -37,7 +36,7 @@ export default function BreathRing({ size = 0.62, colorRole = "hold", label, sub
           ...live,
           background: `radial-gradient(circle at 35% 30%, color-mix(in srgb, ${color} 55%, white) 0%, ${color} 45%, color-mix(in srgb, ${color} 40%, var(--color-ink)) 100%)`,
           boxShadow: `inset 0 -20px 60px -20px color-mix(in srgb, var(--color-ink) 60%, transparent), 0 0 80px -10px ${color}`,
-          transition: `${live.transition ?? ""}, background 600ms`,
+          transition: "background 600ms",
         }}
       />
       <div className="relative z-10 flex flex-col items-center px-10 text-center text-ink">

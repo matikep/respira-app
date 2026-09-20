@@ -1,0 +1,17 @@
+{
+  "name": "Respira · Regulación Respiratoria",
+  "short_name": "Respira",
+  "description": "Triage, ejercicios de respiración guiados y protocolo del inhalador con aerocámara.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1d",
+  "theme_color": "#0a0e1d",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
