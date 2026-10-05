@@ -56,9 +56,9 @@ export const exercises = [
     caution: "Cuando la nariz se destape, inhala por ella: filtra, calienta y humidifica el aire.",
     totalSeconds: 120,
     phases: [
-      inhale(3, "Inhala por la boca", "Boca entreabierta, inhalación corta y sin forzar: no llenes el pecho."),
-      exhale(6, "Exhala con freno", "Casi cierra los labios: el aire sale muy lento por un orificio diminuto, como por una pajita fina."),
-      hold(2, "Pausa", "Quieto, sin tomar aire, antes de volver a inhalar."),
+      inhale(2.5, "Inhala por la boca", "Boca entreabierta, inhalación corta y sin forzar: no llenes el pecho."),
+      exhale(5.5, "Exhala con freno", "Casi cierra los labios: el aire sale muy lento por un orificio diminuto, como por una pajita fina."),
+      hold(1.5, "Pausa", "Quieto, sin tomar aire, antes de volver a inhalar."),
     ],
   },
   {
